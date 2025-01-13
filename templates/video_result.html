@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Playback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex flex-col justify-center items-center min-h-screen bg-gray-100"
+  >
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6 mt-10">
+      Video Detection Result
+    </h1>
+    <div class="shadow-lg rounded-lg overflow-hidden border border-gray-300">
+      <img
+        class="w-[960] h-[512px] object-cover"
+        src="{{ url_for('video_feed', filename=filename) }}"
+        alt="Video Playback"
+      />
+    </div>
+    <a
+      href="/"
+      class="mt-6 mb-6 text-center inline-block w-full max-w-xs py-2 bg-blue-500 text-white text-lg font-medium rounded shadow hover:bg-blue-700 transition duration-300"
+    >
+      Back
+    </a>
+  </body>
+</html>

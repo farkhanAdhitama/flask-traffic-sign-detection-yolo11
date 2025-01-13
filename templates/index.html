@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Object Detection</title>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center bg-gray-100 text-gray-800"
+  >
+    <header
+      class="w-full py-6 bg-center bg-cover"
+      style="
+        background-image: url('https://faniapriyani.files.wordpress.com/2023/11/image.png?w=1024');
+      "
+    >
+      <h1 class="text-3xl font-bold text-center text-white">
+        Indonesia Traffic Sign
+      </h1>
+      <h2 class="text-2xl text-center text-white">Object Detection</h2>
+    </header>
+
+    <main class="flex flex-col items-center mt-10 w-full max-w-lg flex-grow">
+      <!-- Upload Form -->
+      <form
+        id="uploadForm"
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        class="w-full bg-white p-6 rounded-lg shadow-md"
+      >
+        <h2 class="text-lg font-semibold mb-4">Upload a Video</h2>
+        <div class="flex flex-col space-y-4">
+          <input
+            type="file"
+            name="file"
+            accept="video/*"
+            required
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          />
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300 focus:outline-none"
+          >
+            Upload Video
+          </button>
+        </div>
+      </form>
+
+      <!-- Start Webcam Detection -->
+      <div class="mt-6 w-full">
+        <div
+          id="cameraContainer"
+          class="flex items-center justify-center bg-gray-200 border border-gray-300 rounded-lg h-64 w-full mb-4"
+        >
+          <p class="text-gray-500">Camera feed will appear here</p>
+        </div>
+        <div class="flex justify-center space-x-4">
+          <a
+            id="startWebcam"
+            href="#"
+            class="text-center w-full inline-block bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 focus:ring focus:ring-green-300 focus:outline-none"
+          >
+            Start Webcam Detection
+          </a>
+          <a
+            id="stopWebcam"
+            href="#"
+            class="text-center w-full inline-block bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 focus:ring focus:ring-red-300 focus:outline-none"
+          >
+            Stop Webcam Detection
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="w-full py-4 bg-gray-800 text-center text-gray-300 text-sm mx-auto mt-6"
+    >
+      &copy; 2025. All rights reserved.
+    </footer>
+
+    <script>
+      const startWebcamButton = document.getElementById("startWebcam");
+      const stopWebcamButton = document.getElementById("stopWebcam");
+      const cameraContainer = document.getElementById("cameraContainer");
+
+      startWebcamButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        cameraContainer.innerHTML = `
+          <div style="text-align: center">
+            <img src="{{ url_for('webcam_feed') }}" alt="Webcam feed" class="rounded-lg" />
+          </div>
+        `;
+      });
+
+      stopWebcamButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        cameraContainer.innerHTML = `
+          <div class="flex items-center justify-center bg-gray-200 border border-gray-300 rounded-lg h-64 w-full">
+            <p class="text-gray-500">Camera feed will appear here</p>
+          </div>
+        `;
+      });
+    </script>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex-grow: 1;
+      }
+    </style>
+  </body>
+</html>
