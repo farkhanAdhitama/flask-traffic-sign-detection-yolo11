@@ -41,6 +41,7 @@ traffic-sign-detection/
 │── app.py             # Main Flask app
 │── requirements.txt   # List of dependencies
 │── README.md          # Project documentation
+|── Indonesia-Traffic-Sign-Object-Detection-with-YOLO11.ipynb # Model Building
 ```
 
 ## 🎯 YOLO11 Model
